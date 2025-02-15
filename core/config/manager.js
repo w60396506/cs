@@ -1,9 +1,10 @@
 const fs = require('fs');
 const path = require('path');
+const { app } = require('electron');
 
 class ConfigManager {
     constructor() {
-        // 修改配置文件路径为程序根目录
+        // 配置文件路径设置为软件安装目录下
         this.configPath = path.join(process.cwd(), 'config.json');
         
         console.log('Config path:', this.configPath);  // 添加日志查看路径
