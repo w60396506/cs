@@ -1,0 +1,93 @@
+{
+  "name": "jacs",
+  "version": "1.0.0",
+  "description": "A soundboard application",
+  "main": "main.js",
+  "scripts": {
+    "start": "chcp 65001 && electron .",
+    "build": "electron-builder",
+    "build:mac": "electron-builder --mac --x64",
+    "dist": "electron-builder",
+    "pack": "electron-builder --dir",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "build": {
+    "appId": "com.jacs.soundboard",
+    "productName": "JACS",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "JACS"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64"
+          ]
+        }
+      ],
+      "icon": "build/icon.icns",
+      "minimumSystemVersion": "10.13.6"
+    },
+    "files": [
+      "**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "ui",
+        "to": "../ui"
+      },
+      {
+        "from": "sounds",
+        "to": "../sounds"
+      },
+      {
+        "from": "src",
+        "to": "../src"
+      },
+      {
+        "from": "soundbuttons.db",
+        "to": "../soundbuttons.db"
+      }
+    ],
+    "asar": true
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@electron/rebuild": "^3.6.0",
+    "electron": "^13.6.9",
+    "electron-builder": "^24.13.3"
+  },
+  "dependencies": {
+    "@electron/remote": "^2.1.2",
+    "electron-is-dev": "^3.0.1",
+    "sqlite3": "^5.1.7"
+  }
+}
